@@ -4,11 +4,12 @@
  **/
 
 //console.log('Happy hacking :)')
-const url = "https://platzi-avo.vercel.app/api/avo";
+const baseUrl = "https://platzi-avo.vercel.app";
+const appNode = document.getElementById("app");
 
 //web api
 //conectar al serve
-window.fetch(url)
+window.fetch(`${baseUrl}/api/avo`)
 //Procesar a respuesta, y convertirla en JSON
 .then((repuesta) => repuesta.json())
 //JSON -> data -> Renderizarla en JSON
@@ -17,13 +18,17 @@ window.fetch(url)
     resposeJson.data.forEach(item => {
         //console.log(item.name);
         //crear imagen
+        console.log(item);
         const imagen = document.createElement('img');
-        
+        //URL de la imagen
+        imagen.src = `${baseUrl}${item.image}`;
         //crear titulo
         const title = document.createElement('h2');
+        title.textContent = item.name
 
         //crear price
         const price = document.createElement('div');
+        price.textContent = item.price;
 
         const container = document.createElement('div');
         container.append(imagen, title, price);
@@ -32,5 +37,5 @@ window.fetch(url)
         
     });
 
-    document.body.append(todosLosItem);
+    appNode.append(...todosLosItem);
 })
