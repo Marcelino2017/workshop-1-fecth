@@ -1,3 +1,79 @@
+# Básicamente tenemos 4 formas de leer nodos con JS:
+
++ document.getElementById(‘id’) => nos permite obtener un elemento a través de su id.
+
++ document.getElementsByClassName(‘class’) => obtiene un array con todos los elementos hijos que tengan esa clase, ojo “getElementByClassName” no existe, es decir no podremos obtener solo 1 elemento con esa clase.
+
++ document.getElementsByTagName(‘div’) => con este método obtenemos una lista o “array list” con todos los elementos que tengan esa etiqueta, ejemplo todos los divs. Al igual que con el método anterior no hay posibilidad de usarlo en singular, siempre tendremos que usar getElements
+
++ document.querySelector() => nos permite buscar de 3 formas, con id, clase o tagName. A diferencia de los 2 anteriores este nos devuelve 1 solo elemento, el primero que contenga el valor que se le paso. Id => (’#id’), class => (’.class’), tagName (‘div’)
+
++ document.querySelectorAll() => este método retorna una array list con todos los elementos que tengan ese selector (id, class o tagName)
+
+Casi siempre el elemento “padre o parent” es document. ya que estamos haciendo referencia a todo el DOM, todo el documento y esto en ciertos casos nos permite evitar errores.
+ejemplo = const button = document.querySelector(’#button)
+
+# Diferencia entre NodeListd y Array
+
+La diferencia entre NodeList y Array, es que el NodeList carece de métodos que si están disponibles en los Arrays, pero podemos pasar esto fácilmente usando el operador de propagación.
+
+// De esta forma pasamos todos los elementos en el NodeList a un arreglo al cual si podremos usar los métodos filter, map, reduce entre otros. 
+const nodeList = document.querySelectorAll("selector css");
+//..nodeList <- esto se llama express operation
+const elementList = [...nodeList];
+
+Recomendación importante cada vez que obtengamos un NodeList pásemelo a Array ya que los motores de javascript como el motor V8 de google están mas optimizados para Arrays que para NodeList.
+
+# Crear Nodos
+
++ El método document.createElement(): crea un nodo de elemento con el nombre especificado.
++ El método createTextNode () crea un nodo de texto con el texto especificado.
+
+# Agregar Nodos
+
++ El método ParentNode.appendChild(): agrega un nodo como el último hijo de un nodo.
++ El método append(): inserta el contenido especificado al final de los elementos seleccionados.
++ El método insertBefore(): inserta un nodo como hijo, justo antes de un hijo existente, que usted especifica.
++ El insertAdjacentElement(): método inserta un elemento especificado en una posición especificada.
+
+# Otra Forma de Agregar
+
++ node.outerHTML: Sirve para leer HTML para leer HTML
++ node.innerHTML: Sirve para escribir HTML
+
+### PEEEEEEERO, tienen un problema de seguridad 👀☝️
+
++ hack: Cuando en el inspector de elementos seleccionas un elemento y en la consola escribes $0, este te devolverá el elemento tal como si lo hubieses seleccionado con document.querySelector().
+
++ Aquí les dejo el playground que usó el profesor para hacer las pruebas: https://codepen.io/jonalvarezz/pen/OJXeNab?editors=0110
+
++ El problema con estas formas de inserciones es que permiten la inserción XSS, es decir, código maligno, y cualquier usuario programador malicioso podría meter scripts molestos, imagina que cada que un usuario llegue a tu página le salga un alert… ¡Sería catastrófico! Siempre sanitiza (remover caracteres especiales) los inputs de tus usuarios
+
+# Atributos y propiedades
+
+### Diferencia entre  Atributos y Propiedad 
+Básicamente un atributo es el estado inicial en nuestro HTML, es HTML solo podemos escribir atributos porque es el estado inicial con el que se renderizan y una propiedad es la variable que podemos cambiar a lo largo de la ejecución del programa mediante JavaScript, es decir, podemos acceder a dichos atributos y cambiarlo, haciendo que sean propiedades, aquí un poco más de información sobre ello.
+
++ Lo genial de JavaScript es que podemos cambiarlas de forma dinámica. Recordemos que JavaScript son en su mayoría objetos, por lo que los nodos HTML dentro de JavaScript son representados como objetos. Teniendo eso en cuenta, podemos acceder a cualquier atributo de dichos nodos desde HTML y cambiar sis propiedades, por ejemplo:
+
+// Al seleccionar el nodo HTML, JavaScript lo convierte en un objeto!
+const input = document.querySelector("input")
+
+// Y of course, podemos modificarlo como cualquier otro objeto de JavaScript:
+input.placeholder = "Escribe algo"
+input.value = 2
+input.type = "number"
+
+#Eliminar Nodos
+
++ parentElement.removeChild: elimina un nodo hijo del DOM y puede devolver el nodo eliminado.
++ document.remove(): método elimina el elemento especificado del DOM.
++ document.replaceChild(): reemplaza un nodo hijo con un nuevo nodo. El nuevo nodo podría ser un nodo existente en el documento o puede crear un nuevo nodo.
+
+# Intl
+
+El Intlobjeto es el espacio de nombres de la API de internacionalización de ECMAScript, que proporciona comparación de cadenas sensible al idioma, formato de números y formato de fecha y hora. El Intlobjeto proporciona acceso a varios constructores, así como una funcionalidad común a los constructores de internacionalización y otras funciones sensibles al lenguaje.
+
 # Snowpack Tailwind
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
