@@ -6,7 +6,13 @@
 //console.log('Happy hacking :)')
 const baseUrl = "https://platzi-avo.vercel.app";
 
-const appNode = document.getElementById("app");
+const appNode = document.querySelector("#app");
+
+appNode.addEventListener('click', (event) => {
+    if (event.target.nodeName) {
+        window.alert('Hola');
+    }
+});
 
 // Intl (formato de intarnacionalización)
 //formato a fecha  y moneda
@@ -35,12 +41,14 @@ window.fetch(`${baseUrl}/api/avo`)
         //URL de la imagen
         imagen.src = `${baseUrl}${item.image}`;
         imagen.className = "h-16 w-16 md:h-24 md:w-24 rounded-full mx-auto md:mx-0 md:mr-6"
+        
         //crear titulo
         const title = document.createElement('h2');
         title.textContent = item.name;
         //title.style.fontSize = "3rem"
         //segunda opcion 
         title.className = 'text-lg'
+        
 
         //crear price
         const price = document.createElement('div');

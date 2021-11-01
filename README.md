@@ -159,6 +159,14 @@ Bubbling es la forma en que se propaga desde lo más bajo hasta lo más alto
 
 RESUMEN: Cuando se tiene eventos estos pueden flotar desde el más específico hasta el más grande, si se desea quitar este comportamiento se puede usar el método del parámetro del evento `event.stopPropagation()` por lo general no es necesario usar este método
 
+# Event delegation
+
++ La idea principal es delegar un evento global a un solo nodo y desde esa parte poder delegar todos los eventos que sucedan
++ Se debe usar cuando el número de escuchadores es alto
++ Se trata de identificar de donde proviene el evento, según a ello se lo captura con un condicional y se procede a realizar las operaciones
+
+RESUMEN: La técnica event delegation consiste en dejar todos los eventos sucedan en un elemento superior de tal forma que este los identifique y aplique el procedimiento con condicionales
+
 
 # Snowpack Tailwind
 
