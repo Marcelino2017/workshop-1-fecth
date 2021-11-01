@@ -135,8 +135,30 @@ También podemos definir funciones de esta otra manera 👀
     };
 
     De esta forma, el botón, mediante un atributo estaría llamando a la función 😄
+```
+# Event propagation
+
+###  Ideas/conceptos claves
+Bubbling es la forma en que se propaga desde lo más bajo hasta lo más alto
+
++ El DOM es un arbol que renderiza nodos de forma jerárquica
+++ Cuando un evento sucede se propaga a lo largo de ese nodo
++ Los eventos suceden desde el elemento más interno hacia afuera
+++ Propagándose entre cada padre que tiene el elemento escuchado
++ Si deseamos borrar este comportamiento podemos usar el parámetro de evento.
 
 ```
+    node.addEventListener("click", (event) => {
+        event.stopPropagation()
+        // Acciones ...
+    }); 
+
+```
++ Se debe tener cuidado con este tipo de operaciones por que puede existir códigos de otras personas o de librerías que necesiten este tipo de eventos.
++ Por lo general se debería dejar que los eventos fluyan por su ruta.
+
+RESUMEN: Cuando se tiene eventos estos pueden flotar desde el más específico hasta el más grande, si se desea quitar este comportamiento se puede usar el método del parámetro del evento `event.stopPropagation()` por lo general no es necesario usar este método
+
 
 # Snowpack Tailwind
 
